@@ -1,5 +1,6 @@
 <?php
 
+
   if(!empty($_FILES['profile']['name']))
   {
 
@@ -14,17 +15,19 @@
       strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // Check if file already exists
     if (file_exists($target_file)) {
+
          $message = "The file already exist";
       die();
     }
-
+//upload the image to server
     if (
       move_uploaded_file(
         $_FILES['profile']['tmp_name'], $target_file))
         {
           //when user update a profile we save the picture inside asset folder and save image name in the database
-      
-      $message = "successfully uploaded!";
+
+              $message = "successfully uploaded";
+        
     }
   }
 

@@ -13,8 +13,8 @@ if($checkRow > 0){
    while ($organizers = mysqli_fetch_assoc($commitRequest)) {
 
      $organizer = $organizers;
-     $ArrToString = implode( "||",$organizer);
-
+    $ArrToString = implode( "||",$organizer);
+     //echo $ArrToString;
 
     //select event which is posted by organizers user is following
     $status = 1;
@@ -35,7 +35,8 @@ if($checkRow > 0){
    }
 }
 else {
-  $message = "To get notification make sure you are following some organizers";
+  $message = "follow organizers";
+$EventNotification = null;
 }
 
 $response[] = array("message" => $message,"Notification"=> $EventNotification );

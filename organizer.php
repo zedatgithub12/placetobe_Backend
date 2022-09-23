@@ -12,19 +12,15 @@ $commit = mysqli_query($conn, $Query);
 $checkRow = mysqli_num_rows($commit);
 
 if($checkRow >0){
- while($fetchOrganizer = mysqli_fetch_array($commit)){
-   $profile = $fetchOrganizer['profile'];
-   $username = $fetchOrganizer['username'];
-   $category = $fetchOrganizer['category'];
-
+ while($fetchOrganizer[] = mysqli_fetch_assoc($commit)){
+   $profile = $fetchOrganizer;
    $message = "succeed";
  }
 
 }
 else {
    $profile=null;
-      $username=null;
-         $category=null;
+
   $message = "error finding organizer";
 }
 //fetching organizer information end here and after now
@@ -42,7 +38,7 @@ else {
     $follow = "Follow";
 }
 
-$response[] = array("message" => $message, "profile" =>$profile, "username"=>$username, "category" =>$category, "follow" => $follow);
+$response[] = array("message" => $message, "profile" =>$profile, "follow" => $follow);
 echo json_encode($response);
   mysqli_close($conn);
 ?>

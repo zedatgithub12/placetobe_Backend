@@ -3,11 +3,13 @@ include 'connection.php';
 $encodedData = file_get_contents('php://input');
 $decodedData = json_decode($encodedData, true);
 
-$today = date("Y-m-d");
+
+$e=strtotime("next sunday");
+$Sunday = date("Y-m-d", $e);
 $status = 1;
-$todayEvent = "SELECT * FROM events WHERE start_date <= '$today' and  end_date >= '$today'  and event_status = '$status'";
+$W_Events = "SELECT * FROM events WHERE start_date > '$Sunday' and event_status = '$status' ORDER BY start_date DESC";
 //commit select action on the database
- $commit = mysqli_query($conn, $todayEvent);
+ $commit = mysqli_query($conn, $W_Events);
  //check if there is a column with same record
  $checkRow = mysqli_num_rows($commit);
 

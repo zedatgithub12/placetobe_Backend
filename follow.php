@@ -12,6 +12,17 @@ $checkRow = mysqli_num_rows($commitCheck);
 //check if the user is already following the followed user
 if($checkRow > 0){
   $message = "Following";
+
+$unfollow = "DELETE FROM follow WHERE followed_id = $followerId AND followed_id = $organizerId";
+$commitUnfollowing = mysqli_query($conn, $unfollow);
+
+if($commitUnfollowing){
+  $message = "Follow";
+}
+else {
+    $message = "Following";
+}
+
 }
 else{
 $Query = "INSERT INTO follow(follower_id,followed_id) VALUES ('$followerId ','$organizerId')";
