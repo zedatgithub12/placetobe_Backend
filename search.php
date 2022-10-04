@@ -7,7 +7,8 @@ $decodedData = json_decode($encodedData, true);
 
 $searchQuery = $decodedData['searchInput'];
 $status = 1;
-$searchedEvent = "SELECT * FROM events WHERE event_name LIKE '$searchQuery%'  && event_status = '$status' ORDER BY start_date DESC";
+$today = date("Y-m-d");
+$searchedEvent = "SELECT * FROM events WHERE event_name LIKE '$searchQuery%' && end_date >= '$today' && event_status = '$status' ORDER BY start_date DESC";
 //commit select action on the database
  $commit = mysqli_query($conn, $searchedEvent );
  //check if there is a column with same record
