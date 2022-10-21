@@ -19,11 +19,37 @@ if($verify != 0){
        $user = $featcheduser;
   }
 }
+else {
+  $googleId = $decodedData['id'];
+  $userEmail = $decodedData['email'];
+  $userName = $decodedData['name'];
+  $kidName =$decodedData['kidName'];
+  $fatherName = $decodedData['fatherName'];
+  $category = $decodedData['category'];
+  $token = $decodedData['token'];
+  $profile = "maleProfile.jpg";
+
+  $insertQuery = "INSERT INTO users( email, username,profile, google_Id, first_name, middle_name, category, authentication_key) VALUES('$userEmail','$userName','$profile','$googleId','$kidName','$fatherName', '$category', '$token')";
+
+  $commit = mysqli_query($conn, $insertQuery);
+
+  if($commit){
+        $record = "SELECT * from users WHERE email = '$userEmail'";
+        $fetchRecord = mysqli_query($conn, $record);
+
+        while($registeredUser[] = mysqli_fetch_assoc($fetchRecord)){
+          $message = "successfully Registered";
+         $user = $registeredUser;
+     }
+
+}
+}
+/*
     else {
         $message = "There is problem signIn with Google";
          $user= null;
     }
-
+*/
     $response[] = array("message" => $message,"user" =>$user);
 
     echo json_encode($response);

@@ -13,7 +13,7 @@ $checkRow = mysqli_num_rows($commitCheck);
 if($checkRow > 0){
   $message = "Following";
 
-$unfollow = "DELETE FROM follow WHERE followed_id = $followerId AND followed_id = $organizerId";
+$unfollow = "DELETE FROM follow WHERE follower_id = '$followerId' AND followed_id = '$organizerId'";
 $commitUnfollowing = mysqli_query($conn, $unfollow);
 
 if($commitUnfollowing){
@@ -25,7 +25,7 @@ else {
 
 }
 else{
-$Query = "INSERT INTO follow(follower_id,followed_id) VALUES ('$followerId ','$organizerId')";
+$Query = "INSERT INTO follow(follower_id,followed_id) VALUES ('$followerId','$organizerId')";
 $commitFollowing = mysqli_query($conn, $Query);
 if($commitFollowing){
   $message = "Following";

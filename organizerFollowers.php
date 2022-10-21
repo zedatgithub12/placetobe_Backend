@@ -5,7 +5,7 @@ $decodedData = json_decode($encodedData, true);
 
 $userID = $decodedData['organizerId'];
 
-$orgFollowers = "SELECT COUNT(followed_id)FROM follow WHERE follower_id = '$userID'";
+$orgFollowers = "SELECT COUNT(follower_id)FROM follow WHERE followed_id = '$userID'";
 $submitQuery = mysqli_query($conn, $orgFollowers );
 $checkRow = mysqli_num_rows($submitQuery);
 

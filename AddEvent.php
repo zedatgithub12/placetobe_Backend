@@ -23,6 +23,8 @@ $phone = $decodedData['organizerPhone'];
 $redirectLink = $decodedData['redirectUrl'];
 $venue = "_";
 
+$addedDate = Date("Y-m-d");
+
 //check wether the record is in the database or not
 
 $checkEvent = "SELECT * from events WHERE event_name = '$eventName' && start_date = '$startDate'";
@@ -35,8 +37,8 @@ if($checkEventRow != 0){
 else {
 
   //if there is no event with the same name and date insert the event to the database
-$addEvent = "INSERT INTO events(event_status, userId, event_image, event_name, event_description, start_date, start_time, end_date, end_time, category,event_organizer, event_venue, event_address,address_latitude, address_longitude, contact_phone, redirectUrl,event_entrance_fee )
- VALUES ('$status','$userId','$featuredImage', '$eventName', '$evenDescription','$startDate', '$startTime','$endDate','$endTime', '$categories','$organizer', '$venue', '$address','$latitude', '$longitude', '$phone', '$redirectLink', '$entraceFee')";
+$addEvent = "INSERT INTO events(event_status, userId, event_image, event_name, event_description, start_date, start_time, end_date, end_time, category,event_organizer, event_venue, event_address,address_latitude, address_longitude, contact_phone, redirectUrl,event_entrance_fee, addedDate)
+ VALUES ('$status','$userId','$featuredImage', '$eventName', '$evenDescription','$startDate', '$startTime','$endDate','$endTime', '$categories','$organizer', '$venue', '$address','$latitude', '$longitude', '$phone', '$redirectLink', '$entraceFee', '$addedDate')";
 
  $commit = mysqli_query($conn, $addEvent);
 

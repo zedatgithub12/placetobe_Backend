@@ -39,6 +39,7 @@ else {
     }
     else {
         $message = "you cannot register now. Please try again later";
+         $user = null;
     }
 
 }
