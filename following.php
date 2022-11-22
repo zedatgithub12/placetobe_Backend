@@ -6,7 +6,7 @@ $decodedData = json_decode($encodedData, true);
 //$userId = 98;
 $userId = $decodedData['userId'];
 
-$followerSQL = "SELECT followed_id FROM follow WHERE follower_id = '$userId'";
+$followerSQL = "SELECT followed_id FROM follow WHERE follower_id = '$userId' ORDER BY follow_id DESC";
 $followerQuery= mysqli_query($conn, $followerSQL);
 $followerRow = mysqli_num_rows($followerQuery);
 

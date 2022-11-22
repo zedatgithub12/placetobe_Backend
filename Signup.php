@@ -7,8 +7,8 @@ $decodedData = json_decode($encodedData, true);
 $email = $decodedData['Email'];
 $userName = $decodedData['User'];
 $password = md5($decodedData['passwords']);
-
-
+$category = $decodedData['category'];
+$token = $decodedData['token'];
 
 $SQL = "SELECT * from users WHERE email = '$email'";
 
@@ -19,7 +19,7 @@ if($checkMail != 0){
     $message = "The email address is already registered";
   }
 else {
-    $insertQuery = "INSERT INTO users( email, username, password) VALUES('$email','$userName','$password')";
+    $insertQuery = "INSERT INTO users( email, username, password,category, authentication_key) VALUES('$email','$userName','$password', '$category', '$token')";
 
     $commit = mysqli_query($conn, $insertQuery);
 
