@@ -3,29 +3,42 @@ include 'connection.php';
 $encodedData = file_get_contents('php://input');
 $decodedData = json_decode($encodedData, true);
 
-//$userIdentity = '67';
-$organizerId= $decodedData['userId'];
+//$eventId = '90';
+$eventId= $decodedData['eventId'];
 $followerId = $decodedData['followerId'];
+//$followerId = '98';
 
-$Query = "SELECT * FROM users WHERE userId = '$organizerId';";
-$commit = mysqli_query($conn, $Query);
-$checkRow = mysqli_num_rows($commit);
+$User = "SELECT userId FROM events WHERE event_id = '$eventId' limit 1";
+$commitUser = mysqli_query($conn, $User);
+$UserRow = mysqli_num_rows($commitUser);
 
-if($checkRow >0){
- while($fetchOrganizer[] = mysqli_fetch_assoc($commit)){
-   $profile = $fetchOrganizer;
-   $message = "succeed";
- }
+if($UserRow >0){
+   //echo $commitUser;
+  while($featchUser = mysqli_fetch_assoc($commitUser)){
 
+    $userId = $featchUser["userId"];
+
+    $UserDetail = "SELECT * FROM users WHERE userId = '$userId' limit 1";
+    $commitUserDetail = mysqli_query($conn, $UserDetail);
+    $row = mysqli_num_rows($commitUserDetail);
+
+    if($row > 0){
+      while($fetchOrganizer = mysqli_fetch_assoc($commitUserDetail)){
+       $profile = $fetchOrganizer;
+       $message = "succeed";
+       $organizerId = $fetchOrganizer["userId"];
+     }
+    }
+    else {
+       $profile=null;
+      $message = "error finding organizer";
+    }
+  }
 }
 else {
-   $profile=null;
-
-  $message = "error finding organizer";
+  $profile=null;
+ $message = "error finding organizer";
 }
-//fetching organizer information end here and after now
-// we check wether user is following organizer or not
-
 
 $following = "SELECT * from follow WHERE follower_id = '$followerId' && followed_id = '$organizerId'";
 $commitCheck = mysqli_query($conn, $following);

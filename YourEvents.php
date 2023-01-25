@@ -5,7 +5,7 @@ $decodedData = json_decode($encodedData, true);
 
 $userId = $decodedData['userId'];
 $status = 1;
-$todayEvent = "SELECT * FROM events WHERE userId = '$userId' ORDER BY start_date DESC";
+$todayEvent = "SELECT * FROM events WHERE userId = '$userId' ORDER BY addedDate DESC";
 //commit select action on the database
  $commit = mysqli_query($conn, $todayEvent);
  //check if there is a column with same record

@@ -7,10 +7,11 @@ $decodedData = json_decode($encodedData, true);
 $ticketId = $decodedData['ticketId'];
 $userId = $decodedData['userId'];
 $TicketPrice = $decodedData['price'];
+$TicketAmount = $decodedData['amount'];
 $ExpireDate = $decodedData['expireDate'];
 $status = $decodedData['tstatus'];
 
-$SqlQuery = "UPDATE tickets SET currentprice = '$TicketPrice', expiredate = '$ExpireDate', status = '$status'
+$SqlQuery = "UPDATE tickets SET currentprice = '$TicketPrice',currentamount = '$TicketAmount', expiredate = '$ExpireDate', status = '$status'
  WHERE id = '$ticketId' and userId = '$userId'";
 $CommitQuery = mysqli_query($conn, $SqlQuery);
 
