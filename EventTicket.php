@@ -7,7 +7,7 @@ $eventId = $decodedData['eventId'];
 $status = 1;
 $today = date("Y-m-d");
 
-$SQLQuery = "SELECT * FROM tickets WHERE eventId= '$eventId' AND status ='$status' AND expiredate >= '$today'";
+$SQLQuery = "SELECT * FROM tickets WHERE event_id= '$eventId' AND status ='$status' AND expiredate >= '$today'";
 $CommitQuery = mysqli_query($conn, $SQLQuery);
 $row = mysqli_num_rows($CommitQuery);
 

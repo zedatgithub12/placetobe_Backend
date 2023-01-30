@@ -6,6 +6,7 @@ $decodedData = json_decode($encodedData, true);
 $userId= $decodedData['userId'];
 $EventId = $decodedData['eventId'];
 $EventName = $decodedData['eventName'];
+$EventImage = $decodedData['eventImage'];
 $TicketType = $decodedData['type'];
 $TicketPrice = $decodedData['price'];
 $OrgionalPrice = $decodedData['price'];
@@ -24,8 +25,8 @@ if($row > 0){
    $message = "exist";
 }
 else {
-  $InsertQuery = "INSERT INTO tickets (userId, eventId,event_name,tickettype,currentprice,origionalprice,currentamount, origionalamount, addeddate,expiredate,status)
-  VALUES ('$userId','$EventId','$EventName','$TicketType', '$TicketPrice','$OrgionalPrice','$TicketAmount','$AddedAmount','$AddedDate','$ExpireDate','$status')";
+  $InsertQuery = "INSERT INTO tickets (userId, eventId,event_name,event_image,tickettype,currentprice,origionalprice,currentamount, origionalamount, addeddate,expiredate,status)
+  VALUES ('$userId','$EventId','$EventName','$EventImage','$TicketType', '$TicketPrice','$OrgionalPrice','$TicketAmount','$AddedAmount','$AddedDate','$ExpireDate','$status')";
   $CommitInsertQuery = mysqli_query($conn, $InsertQuery);
 
   if($CommitInsertQuery){
