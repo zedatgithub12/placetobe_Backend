@@ -6,7 +6,7 @@ $decodedData = json_decode($encodedData, true);
 $today = date("Y-m-d");
 $status = 1;
 $priority = 1;
-$todayEvent = "SELECT * FROM events WHERE start_date <= '$today' and  end_date >= '$today'  and event_status = '$status' and priority ='$priority'";
+$todayEvent = "SELECT * FROM events WHERE end_date >= '$today'  and event_status = '$status' and priority ='$priority'";
 //commit select action on the database
  $commit = mysqli_query($conn, $todayEvent);
  //check if there is a column with same record
