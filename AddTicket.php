@@ -16,7 +16,7 @@ $AddedDate = $today = date("Y-m-d");
 $ExpireDate = $decodedData['expireDate'];
 $status = 0;
 
-$SqlQuery = "SELECT * FROM tickets WHERE eventId = '$EventId' and TicketType = '$TicketType'";
+$SqlQuery = "SELECT * FROM tickets WHERE event_id = '$EventId' and TicketType = '$TicketType'";
 $CommitQuery = mysqli_query($conn, $SqlQuery);
 
 $row = mysqli_num_rows($CommitQuery);
@@ -25,7 +25,7 @@ if($row > 0){
    $message = "exist";
 }
 else {
-  $InsertQuery = "INSERT INTO tickets (userId, eventId,event_name,event_image,tickettype,currentprice,origionalprice,currentamount, origionalamount, addeddate,expiredate,status)
+  $InsertQuery = "INSERT INTO tickets (userId, event_id,event_name,event_image,tickettype,currentprice,origionalprice,currentamount, origionalamount, addeddate,expiredate,status)
   VALUES ('$userId','$EventId','$EventName','$EventImage','$TicketType', '$TicketPrice','$OrgionalPrice','$TicketAmount','$AddedAmount','$AddedDate','$ExpireDate','$status')";
   $CommitInsertQuery = mysqli_query($conn, $InsertQuery);
 

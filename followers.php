@@ -14,8 +14,6 @@ if($followerRow>0){
 
         $followers = implode("&&",$followerArray);
     //echo json_encode($followers);
-
-
   $featchCommand = "SELECT * FROM users WHERE userId= '$followers'";
   $featchQuery = mysqli_query($conn, $featchCommand);
   $featchedRow = mysqli_num_rows($featchQuery);

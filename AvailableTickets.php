@@ -4,7 +4,7 @@ $encodedData = file_get_contents("php://input");
 $decodedData = json_decode($encodedData, true);
 
 $status = 1;
-$SelectQuery = "SELECT * FROM tickets WHERE status='$status'  ORDER BY id DESC";
+$SelectQuery = "SELECT * FROM tickets WHERE status='$status' && currentamount > '1' ORDER BY id DESC";
 $CommitQuery = mysqli_query($conn, $SelectQuery);
 $row = mysqli_num_rows($CommitQuery);
 
